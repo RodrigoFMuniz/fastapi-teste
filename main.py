@@ -20,3 +20,7 @@ def about():
 @app.get('/rota/{id}')
 def param_route(id):
     return {'Id':id}
+
+@app.get('/blog/{id}/comment')
+def comments(id):
+    return {f'comment {id}':f'Comentários do id {id}'}
