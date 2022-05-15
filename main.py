@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -15,8 +16,19 @@ def new_route():
 
 @app.get('/query-blog')
 def new_route2(limit):
-    print('new_route function')
     return {'data':f'{limit} blogs do DB'}
+
+# @app.get('/query-params')
+# def new_route2(limit = 10):
+#     return {'data':f'{limit} blogs do DB'}
+
+@app.get('/query-params')
+def new_route2(limit=10, published:bool=True, sort:Optional[str]=None):
+    if published:
+        return {'data':f'{limit} blogs do DB 2'}
+    else:
+        return {'data':f'{limit} doesn\'t exists'}
+
 
 @app.get('/about')
 def about():
