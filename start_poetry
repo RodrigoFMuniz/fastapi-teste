@@ -1,6 +1,0 @@
-pip install --upgrade pip
-poetry config virtualenvs.in-project true
-poetry install
-pip install --upgrade poetry
-poetry shell
-beerlog
