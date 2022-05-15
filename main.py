@@ -24,3 +24,7 @@ def param_route(id):
 @app.get('/blog/{id}/comment')
 def comments(id):
     return {f'comment {id}':f'Comentários do id {id}'}
+    
+@app.get('/blog/{id}/content')
+def contents(id: int):
+    return {f'content {id}':id}
