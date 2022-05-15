@@ -1,7 +1,12 @@
+import sre_compile
 from typing import Optional
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
+
+
+# Gets
 
 @app.get('/')
 def index():
@@ -53,4 +58,17 @@ def contents(id: int):
 @app.get('/blog/{id}/images')
 def images(id: int):
     return {f'images {id}':id}
-    
+
+
+#Creating a class BaseModel to be used on post activity
+
+class Blog(BaseModel):
+    title:str
+    body:str
+    published: Optional[bool]
+
+# posts
+
+@app.post('/blog')
+def create_blog(request: Blog):
+    return {'data': f'Blog criado com {request.title}'}
