@@ -2,6 +2,8 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+# GET
+
 # @app.get("/")
 # async def root():
 #     return {"message":"Hello World!!!"}
@@ -14,7 +16,11 @@ def root():
 def get_posts():
     return {'data': "This a post"}
 
+# POST
 
+@app.post("/createposts")
+def create_posts():
+    return {"Message": "Successfuly created posts"}
 
 
 

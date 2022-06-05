@@ -2,31 +2,33 @@
 
 ## Installing
 
-> pip install fastapi[all]
+`pip install fastapi[all]`
 
 > [all] Means that all dependencies will be installed
 
 ## Initializing
 
-> Importing FastAPI to main.py and instantiating It
+Importing FastAPI to main.py and instantiating It
 
     from fastapi import FastAPI
 
     app = FastAPI()
 
 > Running at CLI : `uvicorn main:app`
-
+>
 > If you want to change port number or reload the app automaticly after save some part of project use: `--port "port number" --reload`
 
 ## First steps
 
-> First route
+### GET
+
+First route
 
     @app.get("/") # this decorator matters a lot. "The path is "/". The HTTP request verb is GET and it is called by app instance decorator
     def root(): # the name of function doesn't matter
         return {"message":"Hello World!!!"} # Once the route has been reached this object is returned to requester as a response in json.
 
-> It is possible to use async feature in the function definition, especially qhen making requests that take some time to be fulfilled
+It is possible to use async feature in the function definition, especially qhen making requests that take some time to be fulfilled
 
     @app.get("/")
     async def root():
@@ -34,7 +36,7 @@
 
 > the position of routes matters
 
-> This method will be called first than get_posts method, because It comes before. Note that both methods have the same route string
+This method will be called first than get_posts method, because It comes before. Note that both methods have the same route string
 
     @app.get("/")
     def root():
@@ -43,6 +45,16 @@
     @app.get('/')
     def get_posts():
     return {'data': "This a post"}
+
+### POST
+
+The requester send to API a request but this time with Data built in. The API server sends back to the requester an answer that providea confirmation of post creation.
+
+Basic post creation without any parameters sended
+
+    @app.post("/createposts")
+    def create_posts():
+        return {"Message": "Successfuly created posts"}
 
 ## Docs
 
