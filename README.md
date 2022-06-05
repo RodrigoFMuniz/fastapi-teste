@@ -32,6 +32,18 @@
     async def root():
         return {"message":"Hello World!!!"}
 
+> the position of routes matters
+
+> This method will be called first than get_posts method, because It comes before. Note that both methods have the same route string
+
+    @app.get("/")
+    def root():
+    return {"message":"Hello World!!!"}
+
+    @app.get('/')
+    def get_posts():
+    return {'data': "This a post"}
+
 ## Docs
 
 ## Redocs
