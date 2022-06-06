@@ -11,6 +11,13 @@ class Post(BaseModel):
     published: bool = True
     rating: Optional[int] = None
 
+my_posts = [
+    {"title":"title of post 1", "content": "Content of post 1","id":1},
+    {"title":"title of post 2", "content": "Content of post 2","id":2},
+    {"title":"title of post 3", "content": "Content of post 3","id":3},
+    {"title":"title of post 4", "content": "Content of post 4","id":4},
+    ]
+
 # GET
 
 # @app.get("/")
@@ -19,31 +26,35 @@ class Post(BaseModel):
 
 @app.get("/")
 def root():
-    return {"message":"Hello World!!!"}
+    return my_posts
 
-@app.get('/posts')
-def get_posts():
-    return {'data': "This a post"}
+@app.get('/posts/{id}')
+def get_posts(id:int):
+    return {'data': f"{my_posts[id-1]}"}
 
 # POST
-
-@app.post("/createposts")
-def create_posts():
-    return {"Message": "Successfuly created posts"}
-
-@app.post("/createpostswithpayload")
-def create_posts(payload: dict = Body(...)):
-    print(payload)
-    return {"new_post": f"title {payload['title']} - content {payload['content']}"}
-#title str, content str
-
-@app.post("/createpostwithpydantic")
+@app.post("/posts")
 def create_posts(post:Post):
     print(post.title,"---", post.content, " --- ", post.published, "---", post.rating)
     print(post.dict())
     return {"data": post}
 #title str, content str
 
+# @app.post("/createposts")
+# def create_posts():
+#     return {"Message": "Successfuly created posts"}
+
+# @app.post("/createpostswithpayload")
+# def create_posts(payload: dict = Body(...)):
+#     print(payload)
+#     return {"new_post": f"title {payload['title']} - content {payload['content']}"}
+# #title str, content str
+
+# @app.post("/createpostwithpydantic")
+# def create_posts(post:Post):
+#     print(post.title,"---", post.content, " --- ", post.published, "---", post.rating)
+#     print(post.dict())
+#     return {"data": post}
 
 
 
