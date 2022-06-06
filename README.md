@@ -63,6 +63,15 @@ Post with payload. Data from body
         print(payload)
         return {"new_post": f"title {payload['title']} - content {payload['content']}"}
 
+## Schemas - Why and how to use
+
+### Why?
+
+- It's pain to get allthe values from the body
+- The client can send whatever data they want
+- The data isn't geting validated
+- We ultimately want to force the client to send data in a schema that we expect
+
 ## Docs
 
 ## Redocs
