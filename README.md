@@ -56,6 +56,13 @@ Basic post creation without any parameters sended
     def create_posts():
         return {"Message": "Successfuly created posts"}
 
+Post with payload. Data from body
+
+    @app.post("/createpostswithpayload")
+    def create_posts(payload: dict = Body(...)):
+        print(payload)
+        return {"new_post": f"title {payload['title']} - content {payload['content']}"}
+
 ## Docs
 
 ## Redocs
