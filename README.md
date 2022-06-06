@@ -72,6 +72,16 @@ Post with payload. Data from body
 - The data isn't geting validated
 - We ultimately want to force the client to send data in a schema that we expect
 
+- This is important to validate data and guarantee the correct data management/processing by the server
+
+### How to use?
+
+    class Post(BaseModel):
+        title: str
+        content: str
+        published: bool = True # Default value
+        rating: Optional[int] = None  # Optional value of int type (int | None)
+
 ## Docs
 
 ## Redocs
