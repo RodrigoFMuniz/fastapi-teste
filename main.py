@@ -20,6 +20,11 @@ my_posts = [
     {"title":"title of post 4", "content": "Content of post 4","id":4},
     ]
 
+def find_index_post(id):
+    for i, p in enumerate(my_posts):
+        if p['id']==id:
+            return i
+
 # GET
 
 # @app.get("/")
@@ -58,6 +63,20 @@ def create_posts(post:Post):
     my_posts.append(post_dict)
     return {"data": post_dict}
 #title str, content str
+
+# DELETE
+@app.delete("/posts/{id}")
+def delete_post(id:int):
+    index = find_index_post(id)
+    print(index)
+    print(id)
+    my_posts.pop(index)
+    return {'message': f'post {id} succesfully deleted'}
+
+
+
+
+
 
 # @app.post("/createposts")
 # def create_posts():
