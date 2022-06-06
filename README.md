@@ -65,9 +65,27 @@ Post with payload. Data from body
         print(payload)
         return {"new_post": f"title {payload['title']} - content {payload['content']}"}
 
+
+    @app.post("/posts", status_code=status.HTTP_201_CREATED)
+    def create_posts(post:Post):
+        # print(post.title,"---", post.content, " --- ", post.published, "---", post.rating)
+        # print(post.dict())
+        post_dict = post.dict()
+        post_dict["id"] = randint(0,100000)
+        my_posts.append(post_dict)
+        return {"data": post_dict}
+
 ### UPDATE
 
 ### DELETE
+
+    @app.delete("/posts/{id}")
+    def delete_post(id:int):
+        index = find_index_post(id)
+        print(index)
+        print(id)
+        my_posts.pop(index)
+        return {'message': f'post {id} succesfully deleted'}
 
 ## Schemas - Why and how to use
 
