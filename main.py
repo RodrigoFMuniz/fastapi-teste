@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 from fastapi.params import Body
+from pydantic import BaseModel
 
 app = FastAPI()
+
+class Post(BaseModel):
+    title: str
+    content: str
 
 # GET
 
@@ -27,6 +32,13 @@ def create_posts():
 def create_posts(payload: dict = Body(...)):
     print(payload)
     return {"new_post": f"title {payload['title']} - content {payload['content']}"}
+#title str, content str
+
+@app.post("/createpostwithpydantic")
+def create_posts(post:Post):
+    print(post)
+    return {"data": "new_post"}
+#title str, content str
 
 
 
