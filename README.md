@@ -82,6 +82,11 @@ Post with payload. Data from body
         published: bool = True # Default value
         rating: Optional[int] = None  # Optional value of int type (int | None)
 
+    @app.post("/createpostwithpydantic")
+    def create_posts(post:Post):
+        print(post.title,"---", post.content, " --- ", post.published, "---", post.rating)
+        return {"data": "new_post"}
+
 ## Docs
 
 ## Redocs
