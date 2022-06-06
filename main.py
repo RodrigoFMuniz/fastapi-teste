@@ -29,10 +29,18 @@ my_posts = [
 def root():
     return my_posts
 
+@app.get('/posts/latest')
+def get_latest_posts():
+    print(my_posts[-1])
+    return {'data': my_posts[-1]}
+
 @app.get('/posts/{id}')
 def get_posts(id:int):
+    print(type(id))
     post_id = [p for p in my_posts if p['id'] == id ]
-    return {'data': f"{post_id[0]}"}
+    return {'data': post_id}
+
+
 
 # POST
 @app.post("/posts")
