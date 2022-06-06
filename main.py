@@ -40,7 +40,8 @@ def create_posts(payload: dict = Body(...)):
 @app.post("/createpostwithpydantic")
 def create_posts(post:Post):
     print(post.title,"---", post.content, " --- ", post.published, "---", post.rating)
-    return {"data": "new_post"}
+    print(post.dict())
+    return {"data": post}
 #title str, content str
 
 

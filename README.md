@@ -18,7 +18,7 @@ Importing FastAPI to main.py and instantiating It
 >
 > If you want to change port number or reload the app automaticly after save some part of project use: `--port "port number" --reload`
 
-## First steps
+## CRUD
 
 ### GET
 
@@ -46,6 +46,8 @@ This method will be called first than get_posts method, because It comes before.
     def get_posts():
     return {'data': "This a post"}
 
+### Get with id
+
 ### POST
 
 The requester send to API a request but this time with Data built in. The API server sends back to the requester an answer that providea confirmation of post creation.
@@ -62,6 +64,10 @@ Post with payload. Data from body
     def create_posts(payload: dict = Body(...)):
         print(payload)
         return {"new_post": f"title {payload['title']} - content {payload['content']}"}
+
+### UPDATE
+
+### DELETE
 
 ## Schemas - Why and how to use
 
