@@ -1,5 +1,6 @@
+from telnetlib import STATUS
 from typing import Optional
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, HTTPException, Response, status
 from fastapi.params import Body
 from pydantic import BaseModel
 from random import randint
@@ -35,11 +36,14 @@ def get_latest_posts():
     return {'data': my_posts[-1]}
 
 @app.get('/posts/{id}')
-def get_posts(id:int, response: Response):
+def get_posts(id:int, response:Response):
     print(type(id))
     post_id = [p for p in my_posts if p['id'] == id ]
     if len(post_id) == 0:
-        response.status_code = 404
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Post id {id} was not found')
+        # response.status_code = status.HTTP_404_NOT_FOUND
+        # return {'message': f'Post id {id} was not found'}
     return {'data': post_id}
 
 
