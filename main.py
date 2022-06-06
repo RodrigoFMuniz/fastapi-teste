@@ -49,7 +49,7 @@ def get_posts(id:int, response:Response):
 
 
 # POST
-@app.post("/posts")
+@app.post("/posts", status_code=status.HTTP_201_CREATED)
 def create_posts(post:Post):
     # print(post.title,"---", post.content, " --- ", post.published, "---", post.rating)
     # print(post.dict())
