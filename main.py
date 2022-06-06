@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.params import Body
 from pydantic import BaseModel
 from random import randint
@@ -35,9 +35,11 @@ def get_latest_posts():
     return {'data': my_posts[-1]}
 
 @app.get('/posts/{id}')
-def get_posts(id:int):
+def get_posts(id:int, response: Response):
     print(type(id))
     post_id = [p for p in my_posts if p['id'] == id ]
+    if len(post_id) == 0:
+        response.status_code = 404
     return {'data': post_id}
 
 
