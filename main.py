@@ -7,6 +7,7 @@ app = FastAPI()
 class Post(BaseModel):
     title: str
     content: str
+    published: bool = True
 
 # GET
 
@@ -36,7 +37,7 @@ def create_posts(payload: dict = Body(...)):
 
 @app.post("/createpostwithpydantic")
 def create_posts(post:Post):
-    print(post)
+    print(post.title,"---", post.content, " --- ", post.published)
     return {"data": "new_post"}
 #title str, content str
 
