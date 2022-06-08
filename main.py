@@ -65,7 +65,7 @@ def create_posts(post:Post):
 #title str, content str
 
 # DELETE
-@app.delete("/posts/{id}")
+@app.delete("/posts/{id}",status_code=status.HTTP_200_OK)
 def delete_post(id:int):
     index = find_index_post(id)
     print(index)
