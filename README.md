@@ -115,4 +115,6 @@ Post with payload. Data from body
 
 `http://127.0.0.1:3000/docs`
 
-## Redocs
+## Redoc
+
+`http://127.0.0.1:3000/redoc`
