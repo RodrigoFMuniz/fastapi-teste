@@ -14,7 +14,7 @@ Importing FastAPI to main.py and instantiating It
 
     app = FastAPI()
 
-> Running at CLI : `uvicorn main:app`
+> Running at CLI : `uvicorn app.main:app --port 3000 --reload`
 >
 > If you want to change port number or reload the app automaticly after save some part of project use: `--port "port number" --reload`
 
