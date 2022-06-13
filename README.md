@@ -129,4 +129,8 @@ Post with payload. Data from body
 
 `http://127.0.0.1:3000/redoc`
 
+## status code
+
+`https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml`
+
 ## Alchemy
