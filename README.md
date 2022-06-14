@@ -138,3 +138,4 @@ Post with payload. Data from body
 ### Database concepts
 
 - Is a collection of organized data that can be easily accessed and managed
+- Instead make use of a software referred to as a database management system(DBMS)
