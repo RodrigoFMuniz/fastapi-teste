@@ -149,3 +149,5 @@ Post with payload. Data from body
   - DynamoDB
   - Oracle
   - SQL Server
+- Structured Query Language
+  - Language used to communicate with DBMS
