@@ -134,3 +134,7 @@ Post with payload. Data from body
 `https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml`
 
 ## Alchemy
+
+### Database concepts
+
+- Is a collection of organized data that can be easily accessed and managed
