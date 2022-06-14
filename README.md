@@ -144,3 +144,8 @@ Post with payload. Data from body
   - POSTGRESQL
   - ORACLE
   - SQL Server
+- NoSQL databases:
+  - MongoDB
+  - DynamoDB
+  - Oracle
+  - SQL Server
