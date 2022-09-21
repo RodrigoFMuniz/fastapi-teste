@@ -13,11 +13,11 @@
 
 ### Endpoints
 
-- Recursos
-- Categorias
-- CRUD
-- Verbos HTTP (GET, POST, PUT, DELETE, PATCH ) e substantivos - recursos(Categorias, produtos, models)
-- URI's
+> - Recursos
+> - Categorias
+> - CRUD
+> - Verbos HTTP (GET, POST, PUT, DELETE, PATCH ) e substantivos - recursos(Categorias, produtos, models)
+> - URI's
 
 ## Installing
 
