@@ -11,7 +11,13 @@
 > - Desta maneira é necessária a validação dos dados pelo cliente.
 > - A cada requisição é como se fosse uam nova apresetação entre as partes.
 
-### 
+### Endpoints
+
+- Recursos
+- Categorias
+- CRUD
+- Verbos HTTP (GET, POST, PUT, DELETE, PATCH ) e substantivos - recursos(Categorias, produtos, models)
+- URI's
 
 ## Installing
 
