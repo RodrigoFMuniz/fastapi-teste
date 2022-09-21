@@ -23,6 +23,9 @@
 > - Indivíduo
 > - Coleção
 
+### HTTP POST
+> - Coleção - Utilizado para adicionar um individuo à coleção
+
 ## Installing
 
 `pip install fastapi[all]`
