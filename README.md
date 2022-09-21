@@ -1,5 +1,11 @@
 # FAST API
 
+## API concepts
+
+### O que é?
+
+> É uma interface de comunicação de aplicações de forma programática
+
 ## Installing
 
 `pip install fastapi[all]`
