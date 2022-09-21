@@ -19,6 +19,10 @@
 > - Verbos HTTP (GET, POST, PUT, DELETE, PATCH ) e substantivos - recursos(Categorias, produtos, models)
 > - URI's
 
+### HTTP GET
+> - Indivíduo
+> - Coleção
+
 ## Installing
 
 `pip install fastapi[all]`
