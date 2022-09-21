@@ -6,6 +6,13 @@
 
 > É uma interface de comunicação de aplicações de forma programática
 
+### Stateless
+> - Toda requisição HTTP é stateless
+> - Desta maneira é necessária a validação dos dados pelo cliente.
+> - A cada requisição é como se fosse uam nova apresetação entre as partes.
+
+### 
+
 ## Installing
 
 `pip install fastapi[all]`
