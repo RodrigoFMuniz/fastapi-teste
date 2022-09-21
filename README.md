@@ -13,8 +13,8 @@
 
 ### Endpoints
 
-> - Recursos
-> - Categorias
+> - Recursos 
+> - Categorias ou individuos
 > - CRUD
 > - Verbos HTTP (GET, POST, PUT, DELETE, PATCH ) e substantivos - recursos(Categorias, produtos, models)
 > - URI's
