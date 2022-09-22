@@ -59,6 +59,11 @@
 > - Especifica o formato do arquivo que o requisitante deseja
 > - Accept: aplicativo/xml
 
+### Language
+
+> - Especifica o idioma do conteúdo
+> - Accept-Language
+
 ## Installing
 
 `pip install fastapi[all]`
