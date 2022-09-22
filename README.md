@@ -105,6 +105,13 @@
 > - CRUD.
 > - Autoriza acessos distintos, pós autenticação.
 
+### Tokens
+
+> - Chave criptografada que identifica o cliente.
+> - Quando o cliente cria uma conta na sua aplicação, ele recebe uma chave (Public Key).
+> - Através desta chave(token), este envia no cabeçalho, ou no corpo da requisição para realizar a autenticação.
+> - Como as requisições HTTP são stateless, este token de autenticação sempre é enviado.
+
 ## Installing
 
 `pip install fastapi[all]`
