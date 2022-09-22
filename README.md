@@ -30,6 +30,11 @@
 - Cria um indivíduo em uma coleção.
 - Acessa coleções.
 
+### HTTP PUT
+
+- Atualiza indivíduos.
+- Deve ser aplicado somente em indivíduos.
+
 ## Installing
 
 `pip install fastapi[all]`
