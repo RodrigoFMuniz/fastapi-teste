@@ -91,6 +91,14 @@
 > - XML
 > - JSON - mais usado - javascript object notation
 
+## Segurança
+
+### Autenticação
+
+> - Quem é você.
+> - Necessário para gerar o token de autenticação
+> - Define os níveis de autorização
+
 ## Installing
 
 `pip install fastapi[all]`
