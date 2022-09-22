@@ -25,6 +25,11 @@
 - Indivíduos
 - Coleções
 
+### HTTP POST
+
+- Cria um indivíduo em uma coleção.
+- Acessa coleções.
+
 ## Installing
 
 `pip install fastapi[all]`
