@@ -68,9 +68,6 @@
 
 > - Especifica se o conteúdo pode ser consumido só o cache e em quanto tempo este é utilizado.
 
-> - Especifica o idioma do conteúdo
-> - Accept-Language
-
 ## Installing
 
 `pip install fastapi[all]`
