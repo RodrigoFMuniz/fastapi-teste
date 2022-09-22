@@ -35,6 +35,11 @@
 - Atualiza indivíduos.
 - Deve ser aplicado somente em indivíduos.
 
+### HTTP DELETE
+
+- Deleta indivíduos.
+- Deve ser aplicado somente em indivíduos.
+
 ## Installing
 
 `pip install fastapi[all]`
