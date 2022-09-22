@@ -99,6 +99,12 @@
 > - Necessário para gerar o token de autenticação
 > - Define os níveis de autorização
 
+### Autorização
+
+> - O que você é.
+> - CRUD.
+> - Autoriza acessos distintos, pós autenticação.
+
 ## Installing
 
 `pip install fastapi[all]`
