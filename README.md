@@ -68,6 +68,10 @@
 
 > - Especifica se o conteúdo pode ser consumido só o cache e em quanto tempo este é utilizado.
 
+### Versão da API
+
+> - É possível criar versões distintas da API
+
 ## Installing
 
 `pip install fastapi[all]`
