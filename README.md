@@ -49,6 +49,11 @@
 > - É usado para enviar à API, uma requisição especifica
 > - Ex.: `..v1/produtos?format=xml`
 
+### Requests via URI
+
+> - Podemos solicitar diretamente passando a extensão
+> - `.../v1/produtos.xml`
+
 ## Installing
 
 `pip install fastapi[all]`
