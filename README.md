@@ -1,18 +1,18 @@
 # FAST API
 
-## API concepts
+# API concepts
 
-### O que é?
+## O que é?
 
 > É uma interface de comunicação de aplicações de forma programática
 
-### Stateless
+## Stateless
 
 > - Toda requisição HTTP é stateless
 > - Desta maneira é necessária a validação dos dados pelo cliente.
 > - A cada requisição é como se fosse uam nova apresetação entre as partes.
 
-### Endpoints
+## Endpoints
 
 > - Recursos
 > - Categorias ou individuos
@@ -22,23 +22,32 @@
 
 ### HTTP GET
 
-- Indivíduos
-- Coleções
+> - Indivíduos
+> - Coleções
 
 ### HTTP POST
 
-- Cria um indivíduo em uma coleção.
-- Acessa coleções.
+> - Cria um indivíduo em uma coleção.
+> - Acessa coleções.
 
 ### HTTP PUT
 
-- Atualiza indivíduos.
-- Deve ser aplicado somente em indivíduos.
+> - Atualiza indivíduos.
+> - Deve ser aplicado somente em indivíduos.
 
 ### HTTP DELETE
 
-- Deleta indivíduos.
-- Deve ser aplicado somente em indivíduos.
+> - Deleta indivíduos.
+> - Deve ser aplicado somente em indivíduos.
+
+## Requests
+
+### Query Strings
+
+> - Vem após a interrogação(question mark)
+> - É um conjunto chave:valor
+> - É usado para enviar à API, uma requisição especifica
+> - Ex.: `..v1/produtos?format=xml`
 
 ## Installing
 
