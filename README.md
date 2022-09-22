@@ -78,6 +78,14 @@
 
 > - Possui vários metadados sobre a resposta, como: Content-Type, Las-Modified, Expires, Status.. etc.
 
+### Códigos de status
+
+> - 1xx - Informational
+> - 2xx - Success
+> - 3xx - Redirection
+> - 4xx - Client Error
+> - 5xx - Server Error
+
 ## Installing
 
 `pip install fastapi[all]`
