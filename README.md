@@ -54,6 +54,11 @@
 > - Podemos solicitar diretamente passando a extensão
 > - `.../v1/produtos.xml`
 
+### Cabeçalho da Request
+
+> - Especifica o formato do arquivo que o requisitante deseja
+> - Accept: aplicativo/xml
+
 ## Installing
 
 `pip install fastapi[all]`
