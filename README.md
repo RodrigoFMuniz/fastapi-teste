@@ -72,6 +72,12 @@
 
 > - É possível criar versões distintas da API
 
+## Responses
+
+### Cabeçalho da response
+
+> - Possui vários metadados sobre a resposta, como: Content-Type, Las-Modified, Expires, Status.. etc.
+
 ## Installing
 
 `pip install fastapi[all]`
