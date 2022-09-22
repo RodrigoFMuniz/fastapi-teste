@@ -86,6 +86,11 @@
 > - 4xx - Client Error
 > - 5xx - Server Error
 
+### Formato de dados
+
+> - XML
+> - JSON - mais usado - javascript object notation
+
 ## Installing
 
 `pip install fastapi[all]`
