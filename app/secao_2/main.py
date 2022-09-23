@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, status
 
 app = FastAPI()
 
@@ -44,11 +44,13 @@ async def get_cursos():
     return cursos
 
 @app.get('/cursos/{curso_id}')
-async def get_curso(curso_id:int):
-    curso = cursos[curso_id]
-    curso.update({'id':curso_id}) #Insere o valor do ID no final do dicionário, compondo a resposta a requisição
-    return curso
-
+async def get_curso(curso_id:int):# declarandovia type hint o tipo de dados do param
+    try:
+        curso = cursos[curso_id]
+        curso.update({'id':curso_id}) #Insere o valor do ID no final do dicionário, compondo a resposta a requisição
+        return curso
+    except KeyError:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Curso não encontrado")
 
 if __name__=='__main__':
     import uvicorn
