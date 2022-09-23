@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, Response
 
 from models import Curso
 
@@ -62,7 +62,7 @@ async def get_curso(curso_id:int):# declarando via type hint o tipo de dados do 
 
 @app.post('/cursos', status_code=status.HTTP_201_CREATED)
 async def post_curso(curso:Curso):
-    next_curso:int = len(cursos)+1
+    next_curso:int = len(cursos) + 1
     cursos[next_curso] = curso
     del curso.id
     return curso
@@ -74,8 +74,25 @@ async def post_curso(curso:Curso):
     #     raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"Já existe um curso com id {curso.id}")
 
 
+@app.put('/cursos/{curso_id}')
+async def put_cursos(curso_id: int, curso: Curso):
+    if curso_id in cursos:
+        cursos[curso_id] = curso
+        del curso.id
+        return curso
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
 
 
+@app.delete('/cursos/{curso_id}')
+async def delete_curso(curso_id: int):
+    if curso_id in cursos:
+        cursos.pop(curso_id)
+        # return {"detail": f"Curso {curso_id} deletado com sucesso"} # funciona, porém o status code fica errado
+        # return JSONResponse(content="Item deletado",status_code=status.HTTP_204_NO_CONTENT) Não funciona adequadamente
+        return Response(status_code=status.HTTP_204_NO_CONTENT)# funciona
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"O item ID {curso_id} não está no banco de dados.")
 
 if __name__=='__main__':
     import uvicorn
