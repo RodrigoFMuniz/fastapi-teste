@@ -36,7 +36,15 @@ cursos = {
     },
 }
 
+
+
+
+@app.get('/cursos')
+async def get_cursos():
+    return cursos
+
+
 if __name__=='__main__':
     import uvicorn
 
-    uvicorn.run('app.secao_2.main:app', host='0.0.0.0',port=3001, log_level='info', reload=True, debug=True)
+    uvicorn.run("main:app", host='0.0.0.0',port=3001, log_level='info', reload=True, debug=True)
