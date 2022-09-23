@@ -43,6 +43,12 @@ cursos = {
 async def get_cursos():
     return cursos
 
+@app.get('/cursos/{curso_id}')
+async def get_curso(curso_id:int):
+    curso = cursos[curso_id]
+    curso.update({'id':curso_id}) #Insere o valor do ID no final do dicionário, compondo a resposta a requisição
+    return curso
+
 
 if __name__=='__main__':
     import uvicorn
