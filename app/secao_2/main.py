@@ -60,15 +60,18 @@ async def get_curso(curso_id:int):# declarando via type hint o tipo de dados do 
 
  # POST
 
-@app.post('/cursos')
+@app.post('/cursos', status_code=status.HTTP_201_CREATED)
 async def post_curso(curso:Curso):
     next_curso:int = len(cursos)+1
-    if next_curso not in cursos:
-        del curso.id
-        cursos.update({next_curso: curso})        
-        return curso
-    else:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"Já existe um curso com id {curso.id}")
+    cursos[next_curso] = curso
+    del curso.id
+    return curso
+    # if next_curso not in cursos:
+    #     del curso.id
+    #     cursos.update({next_curso: curso})        
+    #     return curso
+    # else:
+    #     raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"Já existe um curso com id {curso.id}")
 
 
 
