@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException, status
 
+from models import Curso
+
 app = FastAPI()
 
 
@@ -38,19 +40,39 @@ cursos = {
 
 
 
+#GET
 
 @app.get('/cursos')
 async def get_cursos():
     return cursos
 
 @app.get('/cursos/{curso_id}')
-async def get_curso(curso_id:int):# declarandovia type hint o tipo de dados do param
+async def get_curso(curso_id:int):# declarando via type hint o tipo de dados do param
     try:
         curso = cursos[curso_id]
-        curso.update({'id':curso_id}) #Insere o valor do ID no final do dicionário, compondo a resposta a requisição
+        if curso_id>6:
+            curso.id = curso_id
+        else:
+            curso.update({'id':curso_id}) #Insere o valor do ID no final do dicionário, compondo a resposta a requisição
         return curso
     except KeyError:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Curso não encontrado")
+
+ # POST
+
+@app.post('/cursos')
+async def post_curso(curso:Curso):
+    next_curso:int = len(cursos)+1
+    if next_curso not in cursos:
+        del curso.id
+        cursos.update({next_curso: curso})        
+        return curso
+    else:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"Já existe um curso com id {curso.id}")
+
+
+
+
 
 if __name__=='__main__':
     import uvicorn
