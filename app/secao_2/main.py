@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, status, Response
+from fastapi import FastAPI, HTTPException, status, Response, Path
 
 from models import Curso
 
@@ -47,7 +47,7 @@ async def get_cursos():
     return cursos
 
 @app.get('/cursos/{curso_id}')
-async def get_curso(curso_id:int):# declarando via type hint o tipo de dados do param
+async def get_curso(curso_id:int = Path(default=None, title="Titulo", description="Descrição do item", gt=0, lt=10)):# declarando via type hint o tipo de dados do param
     try:
         curso = cursos[curso_id]
         if curso_id>6:
