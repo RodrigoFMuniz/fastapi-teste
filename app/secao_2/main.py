@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException, status, Response, Path
+from fastapi import FastAPI, HTTPException, status, Response, Path, Query
+
+from typing import Optional
 
 from models import Curso
 
@@ -89,10 +91,19 @@ async def delete_curso(curso_id: int):
     if curso_id in cursos:
         cursos.pop(curso_id)
         # return {"detail": f"Curso {curso_id} deletado com sucesso"} # funciona, porém o status code fica errado
-        # return JSONResponse(content="Item deletado",status_code=status.HTTP_204_NO_CONTENT) Não funciona adequadamente
+        # return JSONResponse(content="Item deletado",status_code=status.HTTP_204_NO_CONTENT) # Não funciona adequadamente
         return Response(status_code=status.HTTP_204_NO_CONTENT)# funciona
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"O item ID {curso_id} não está no banco de dados.")
+
+
+# Query paramenter
+
+@app.get('/calculadora')
+async def calcular(a:int = Query(default=None, gt=10),b:int = Query(default=None, gt=5),c:Optional[int]=0):
+    res = a+b+c
+    return {"Resultado": res}
+
 
 if __name__=='__main__':
     import uvicorn
