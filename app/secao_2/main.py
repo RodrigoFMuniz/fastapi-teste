@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, status, Response, Path, Query
+from fastapi import FastAPI, HTTPException, status, Response, Path, Query, Header
 
 from typing import Optional
 
@@ -100,8 +100,9 @@ async def delete_curso(curso_id: int):
 # Query paramenter
 
 @app.get('/calculadora')
-async def calcular(a:int = Query(default=None, gt=10),b:int = Query(default=None, gt=5),c:Optional[int]=0):
+async def calcular(a:int = Query(default=None, gt=10),b:int = Query(default=None, gt=5),c:Optional[int]=0, geek: str= Header(default=None)):
     res = a+b+c
+    print(f'X-GEEK: {geek}')
     return {"Resultado": res}
 
 
