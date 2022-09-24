@@ -1,10 +1,22 @@
-from fastapi import FastAPI, HTTPException, status, Response, Path, Query, Header
+from fastapi import FastAPI, HTTPException, status, Response, Path, Query, Header, Depends
 
-from typing import Optional
+from typing import Any, Optional
 
 from models import Curso
 
+from time import sleep
+
 app = FastAPI()
+
+def db_fake():
+    try:
+        print('Abrindo conexão com db')
+        sleep(3)
+    finally:
+        print('Finalizando ...')
+        sleep(2)
+        print('Fechando conexão com db')
+
 
 
 cursos = {
@@ -45,11 +57,11 @@ cursos = {
 #GET
 
 @app.get('/cursos')
-async def get_cursos():
+async def get_cursos(db: Any =  Depends(db_fake)):
     return cursos
 
 @app.get('/cursos/{curso_id}')
-async def get_curso(curso_id:int = Path(default=None, title="Titulo", description="Descrição do item", gt=0, lt=10)):# declarando via type hint o tipo de dados do param
+async def get_curso(curso_id:int = Path(default=None, title="Titulo", description="Descrição do item", gt=0, lt=10), db: Any =  Depends(db_fake)):# declarando via type hint o tipo de dados do param
     try:
         curso = cursos[curso_id]
         if curso_id>6:
@@ -63,7 +75,7 @@ async def get_curso(curso_id:int = Path(default=None, title="Titulo", descriptio
  # POST
 
 @app.post('/cursos', status_code=status.HTTP_201_CREATED)
-async def post_curso(curso:Curso):
+async def post_curso(curso:Curso, db: Any =  Depends(db_fake)):
     next_curso:int = len(cursos) + 1
     cursos[next_curso] = curso
     del curso.id
@@ -77,7 +89,7 @@ async def post_curso(curso:Curso):
 
 
 @app.put('/cursos/{curso_id}')
-async def put_cursos(curso_id: int, curso: Curso):
+async def put_cursos(curso_id: int, curso: Curso, db: Any =  Depends(db_fake)):
     if curso_id in cursos:
         cursos[curso_id] = curso
         del curso.id
@@ -87,7 +99,7 @@ async def put_cursos(curso_id: int, curso: Curso):
 
 
 @app.delete('/cursos/{curso_id}')
-async def delete_curso(curso_id: int):
+async def delete_curso(curso_id: int, db: Any =  Depends(db_fake)):
     if curso_id in cursos:
         cursos.pop(curso_id)
         # return {"detail": f"Curso {curso_id} deletado com sucesso"} # funciona, porém o status code fica errado
@@ -100,7 +112,7 @@ async def delete_curso(curso_id: int):
 # Query paramenter
 
 @app.get('/calculadora')
-async def calcular(a:int = Query(default=None, gt=10),b:int = Query(default=None, gt=5),c:Optional[int]=0, geek: str= Header(default=None)):
+async def calcular(a:int = Query(default=None, gt=10),b:int = Query(default=None, gt=5),c:Optional[int]=0, geek: str= Header(default=None), db: Any =  Depends(db_fake)):
     res = a+b+c
     print(f'X-GEEK: {geek}')
     return {"Resultado": res}
