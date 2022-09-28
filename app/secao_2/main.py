@@ -59,7 +59,7 @@ cursos = {
 
 #GET
 
-@app.get('/cursos')
+@app.get('/cursos', description="Retorna todos os cursos no db", summary="Retorna os cursos no db")
 async def get_cursos(db: Any =  Depends(db_fake)):
     return cursos
 
