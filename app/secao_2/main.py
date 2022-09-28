@@ -25,7 +25,8 @@ def db_fake():
 @app.get('/cursos', 
         description="Retorna todos os cursos no db", 
         summary="Retorna os cursos no db",
-        response_model=List[Curso])
+        response_model=List[Curso],
+        response_description="Resposta bem sucedida")
         # response_model=Dict[int,Curso])
 async def get_cursos(db: Any =  Depends(db_fake)):
     return cursos
