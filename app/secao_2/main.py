@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, status, Response, Path, Query, Heade
 
 from typing import Any, Optional, List  
 
-from models import Curso
+from models import Curso, cursos
 
 from time import sleep
 
@@ -19,43 +19,6 @@ def db_fake():
         print('Finalizando ...')
         sleep(2)
         print('Fechando conexão com db')
-
-
-
-cursos = {
-    1:{
-        'titulo':'Curso 1 Codevibes',
-        'aulas':40,
-        'horas':20
-    },
-    2:{
-        'titulo':'Curso 2 Codevibes',
-        'aulas':59,
-        'horas':34
-    },
-    3:{
-        'titulo':'Curso 3 Codevibes',
-        'aulas':26,
-        'horas':29
-    },
-    4:{
-        'titulo':'Curso 4 Codevibes',
-        'aulas':12,
-        'horas':2
-    },
-    5:{
-        'titulo':'Curso 5 Codevibes',
-        'aulas':126,
-        'horas':10
-    },
-    6:{
-        'titulo':'Curso 6 Codevibes',
-        'aulas':202,
-        'horas':18
-    },
-}
-
-
 
 #GET
 
@@ -84,8 +47,8 @@ async def get_curso(curso_id:int = Path(default=None, title="Titulo", descriptio
 @app.post('/cursos', status_code=status.HTTP_201_CREATED, response_model=Curso)
 async def post_curso(curso:Curso, db: Any =  Depends(db_fake)):
     next_curso:int = len(cursos) + 1
-    cursos[next_curso] = curso
-    del curso.id
+    curso.id=next_curso
+    cursos.append(curso)
     return curso
     # if next_curso not in cursos:
     #     del curso.id
