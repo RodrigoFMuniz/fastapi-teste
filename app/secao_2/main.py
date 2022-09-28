@@ -30,14 +30,10 @@ def db_fake():
 async def get_cursos(db: Any =  Depends(db_fake)):
     return cursos
 
-@app.get('/cursos/{curso_id}')
+@app.get('/cursos/{curso_id}',status_code=status.HTTP_200_OK, response_model=Curso)
 async def get_curso(curso_id:int = Path(default=None, title="Titulo", description="Descrição do item", gt=0, lt=10), db: Any =  Depends(db_fake)):# declarando via type hint o tipo de dados do param
     try:
         curso = cursos[curso_id]
-        if curso_id>6:
-            curso.id = curso_id
-        else:
-            curso.update({'id':curso_id}) #Insere o valor do ID no final do dicionário, compondo a resposta a requisição
         return curso
     except KeyError:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Curso não encontrado")
