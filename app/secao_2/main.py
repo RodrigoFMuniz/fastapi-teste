@@ -6,7 +6,10 @@ from models import Curso
 
 from time import sleep
 
-app = FastAPI()
+app = FastAPI(
+    title="Documentação Aprendizado fastapi",
+    version="0.0.1",
+    description="Uma descrição da API FastAPI")
 
 def db_fake():
     try:
