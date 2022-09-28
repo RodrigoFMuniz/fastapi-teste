@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, status, Response, Path, Query, Header, Depends
 
-from typing import Any, Optional
+from typing import Any, Optional, List  
 
 from models import Curso
 
@@ -59,7 +59,11 @@ cursos = {
 
 #GET
 
-@app.get('/cursos', description="Retorna todos os cursos no db", summary="Retorna os cursos no db")
+@app.get('/cursos', 
+        description="Retorna todos os cursos no db", 
+        summary="Retorna os cursos no db",
+        response_model=List[Curso])
+        # response_model=Dict[int,Curso])
 async def get_cursos(db: Any =  Depends(db_fake)):
     return cursos
 
@@ -77,7 +81,7 @@ async def get_curso(curso_id:int = Path(default=None, title="Titulo", descriptio
 
  # POST
 
-@app.post('/cursos', status_code=status.HTTP_201_CREATED)
+@app.post('/cursos', status_code=status.HTTP_201_CREATED, response_model=Curso)
 async def post_curso(curso:Curso, db: Any =  Depends(db_fake)):
     next_curso:int = len(cursos) + 1
     cursos[next_curso] = curso
