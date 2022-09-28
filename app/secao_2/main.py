@@ -65,19 +65,19 @@ async def put_cursos(curso_id: int, curso: Curso, db: Any =  Depends(db_fake)):
         if curso_id == c.id:
             cursos[curso_id] = curso
             return curso
-        # else:
-        #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
 
 
 @app.delete('/cursos/{curso_id}')
 async def delete_curso(curso_id: int, db: Any =  Depends(db_fake)):
-    if curso_id in cursos:
-        cursos.pop(curso_id)
+    for c in cursos:
+        print(c.id)
+        if curso_id == c.id:
+            cursos.pop(curso_id)            
         # return {"detail": f"Curso {curso_id} deletado com sucesso"} # funciona, porém o status code fica errado
         # return JSONResponse(content="Item deletado",status_code=status.HTTP_204_NO_CONTENT) # Não funciona adequadamente
-        return Response(status_code=status.HTTP_204_NO_CONTENT)# funciona
-    else:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"O item ID {curso_id} não está no banco de dados.")
+            return Response(status_code=status.HTTP_204_NO_CONTENT)# funciona
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"O item ID {curso_id} não está no banco de dados.")
 
 
 # Query paramenter
