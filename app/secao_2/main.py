@@ -60,12 +60,13 @@ async def post_curso(curso:Curso, db: Any =  Depends(db_fake)):
 
 @app.put('/cursos/{curso_id}')
 async def put_cursos(curso_id: int, curso: Curso, db: Any =  Depends(db_fake)):
-    if curso_id in cursos:
-        cursos[curso_id] = curso
-        del curso.id
-        return curso
-    else:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
+    for c in cursos:
+        print(c.id)
+        if curso_id == c.id:
+            cursos[curso_id] = curso
+            return curso
+        # else:
+        #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
 
 
 @app.delete('/cursos/{curso_id}')
