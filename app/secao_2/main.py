@@ -58,17 +58,17 @@ async def post_curso(curso:Curso, db: Any =  Depends(db_fake)):
     #     raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"Já existe um curso com id {curso.id}")
 
 
-@app.put('/cursos/{curso_id}')
+@app.put('/cursos/{curso_id}', response_model=Curso)
 async def put_cursos(curso_id: int, curso: Curso, db: Any =  Depends(db_fake)):
     for c in cursos:
         print(c.id)
         if curso_id == c.id:
             cursos[curso_id] = curso
-            return curso
+            return cursos[curso_id]
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
 
 
-@app.delete('/cursos/{curso_id}')
+@app.delete('/cursos/{curso_id}', response_model=None)
 async def delete_curso(curso_id: int, db: Any =  Depends(db_fake)):
     for c in cursos:
         print(c.id)
