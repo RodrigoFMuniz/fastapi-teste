@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 class Curso(BaseModel):
     id:Optional[int] = None
@@ -7,6 +7,12 @@ class Curso(BaseModel):
     aulas: int
     horas:int
 
+    @validator('titulo')
+    def validar_titulo(cls, value: str):
+        words=value.split(' ')
+        if len(words) < 3:
+            raise ValueError('O título deve ter apenas 3 palavras.')
+        return value
 
 
 
