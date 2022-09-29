@@ -1,30 +1,124 @@
 # FAST API
 
-## API concepts
+# API concepts
 
-### O que é?
+## O que é?
 
 > É uma interface de comunicação de aplicações de forma programática
 
-### Stateless
+## Stateless
+
 > - Toda requisição HTTP é stateless
 > - Desta maneira é necessária a validação dos dados pelo cliente.
 > - A cada requisição é como se fosse uam nova apresetação entre as partes.
 
-### Endpoints
+## Endpoints
 
-> - Recursos 
+> - Recursos
 > - Categorias ou individuos
 > - CRUD
 > - Verbos HTTP (GET, POST, PUT, DELETE, PATCH ) e substantivos - recursos(Categorias, produtos, models)
 > - URI's
 
 ### HTTP GET
+<<<<<<< HEAD
 > - Indivíduo
 > - Coleção
 
 ### HTTP POST
 > - Coleção - Utilizado para adicionar um individuo à coleção
+=======
+
+> - Indivíduos
+> - Coleções
+
+### HTTP POST
+
+> - Cria um indivíduo em uma coleção.
+> - Acessa coleções.
+
+### HTTP PUT
+
+> - Atualiza indivíduos.
+> - Deve ser aplicado somente em indivíduos.
+
+### HTTP DELETE
+
+> - Deleta indivíduos.
+> - Deve ser aplicado somente em indivíduos.
+
+## Requests
+
+### Query Strings
+
+> - Vem após a interrogação(question mark)
+> - É um conjunto chave:valor
+> - É usado para enviar à API, uma requisição especifica
+> - Ex.: `..v1/produtos?format=xml`
+
+### Requests via URI
+
+> - Podemos solicitar diretamente passando a extensão
+> - `.../v1/produtos.xml`
+
+### Cabeçalho da Request
+
+> - Especifica o formato do arquivo que o requisitante deseja
+> - Accept: aplicativo/xml
+
+### Language
+
+> - Especifica o idioma do conteúdo
+> - Accept-Language
+
+### Cache Control
+
+> - Especifica se o conteúdo pode ser consumido só o cache e em quanto tempo este é utilizado.
+
+### Versão da API
+
+> - É possível criar versões distintas da API
+
+## Responses
+
+### Cabeçalho da response
+
+> - Possui vários metadados sobre a resposta, como: Content-Type, Las-Modified, Expires, Status.. etc.
+
+### Códigos de status
+
+> - 1xx - Informational
+> - 2xx - Success
+> - 3xx - Redirection
+> - 4xx - Client Error
+> - 5xx - Server Error
+
+### Formato de dados
+
+> - XML
+> - JSON - mais usado - javascript object notation
+
+## Segurança
+
+### Autenticação
+
+> - Quem é você.
+> - Necessário para gerar o token de autenticação
+> - Define os níveis de autorização
+
+### Autorização
+
+> - O que você é.
+> - CRUD.
+> - Autoriza acessos distintos, pós autenticação.
+
+### Tokens
+
+> - Chave criptografada que identifica o cliente.
+> - Quando o cliente cria uma conta na sua aplicação, ele recebe uma chave (Public Key).
+> - Através desta chave(token), este envia no cabeçalho, ou no corpo da requisição para realizar a autenticação.
+> - Como as requisições HTTP são stateless, este token de autenticação sempre é enviado.
+>>>>>>> 7184d61ec2859a7715b37c99550008f45e8dd5a7
 
 ## Installing
 
