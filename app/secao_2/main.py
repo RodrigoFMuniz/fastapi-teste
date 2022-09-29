@@ -14,10 +14,10 @@ app = FastAPI(
 def db_fake():
     try:
         print('Abrindo conexão com db')
-        sleep(3)
+        sleep(1)
     finally:
         print('Finalizando ...')
-        sleep(2)
+        sleep(1)
         print('Fechando conexão com db')
 
 #GET
@@ -34,14 +34,14 @@ async def get_cursos(db: Any =  Depends(db_fake)):
 @app.get('/cursos/{curso_id}',status_code=status.HTTP_200_OK, response_model=Curso)
 async def get_curso(curso_id:int = Path(default=None, title="Titulo", description="Descrição do item", gt=0, lt=10), db: Any =  Depends(db_fake)):# declarando via type hint o tipo de dados do param
     try:
-        curso = cursos[curso_id]
+        curso = cursos[curso_id - 1]
         return curso
     except KeyError:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Curso não encontrado")
 
  # POST
 
-@app.post('/cursos', status_code=status.HTTP_201_CREATED, response_model=Curso)
+@app.post('/cursos', status_code=status.HTTP_201_CREATED, response_model=Curso,response_description="Insere um novo curso a lista")
 async def post_curso(curso:Curso, db: Any =  Depends(db_fake)):
     next_curso:int = len(cursos) + 1
     curso.id=next_curso
@@ -60,8 +60,9 @@ async def put_cursos(curso_id: int, curso: Curso, db: Any =  Depends(db_fake)):
     for c in cursos:
         print(c.id)
         if curso_id == c.id:
-            cursos[curso_id] = curso
-            return cursos[curso_id]
+            cursos[curso_id - 1] = curso
+            cursos[curso_id -1].id = curso_id
+            return cursos[curso_id - 1]
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Não existe item com o ID {curso_id}")
 
 
@@ -70,7 +71,7 @@ async def delete_curso(curso_id: int, db: Any =  Depends(db_fake)):
     for c in cursos:
         print(c.id)
         if curso_id == c.id:
-            cursos.pop(curso_id)            
+            cursos.pop(curso_id - 1)            
         # return {"detail": f"Curso {curso_id} deletado com sucesso"} # funciona, porém o status code fica errado
         # return JSONResponse(content="Item deletado",status_code=status.HTTP_204_NO_CONTENT) # Não funciona adequadamente
             return Response(status_code=status.HTTP_204_NO_CONTENT)# funciona
