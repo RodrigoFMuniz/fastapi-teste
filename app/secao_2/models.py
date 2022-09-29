@@ -14,6 +14,20 @@ class Curso(BaseModel):
             raise ValueError('O título deve ter apenas 3 palavras.')
         return value
 
+    @validator('aulas')
+    def validar_aulas(cls, value: int):
+        min_aulas=10
+        if value < min_aulas:
+            raise ValueError('O número mínimo de aulas é 10.')
+        return value
+
+    @validator('horas')
+    def validar_horas(cls, value: int):
+        min_horas=10
+        if value < min_horas:
+            raise ValueError('O número mínimo de horas é 10.')
+        return value
+
 
 
 cursos = [
